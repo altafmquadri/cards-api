@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from './Card'
+import './CardDeck.css'
 
 const api = 'https://deckofcardsapi.com/api/deck/new/shuffle/'
 
@@ -11,6 +12,7 @@ class CardDeck extends Component {
     }
 
     getCard = () => {
+        if (this.state.remaining === 0) return alert('no more cards available')
         const drawApi = `https://deckofcardsapi.com/api/deck/${this.state.deck_id}/draw/`
         console.log(drawApi)
         fetch(drawApi).then(res => res.json()).then(draw => {
@@ -28,7 +30,8 @@ class CardDeck extends Component {
             <Card
                 key={index}
                 cardImg={c.image}
-                name={`${c.value} of ${c.suit}`} />))
+                name={`${c.value} of ${c.suit}`
+                } />))
     }
 
     componentDidMount() {
@@ -44,6 +47,7 @@ class CardDeck extends Component {
     render() {
         return (
             <div>
+                <h1>Card Dealer</h1>
                 <button onClick={this.getCard}>Deal</button>
                 <div className="CardDeck-container">
                     {this.renderCards()}
