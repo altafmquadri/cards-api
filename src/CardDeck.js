@@ -46,10 +46,11 @@ class CardDeck extends Component {
     }
     render() {
         return (
-            <div>
-                <h1>Card Dealer</h1>
-                <button onClick={this.getCard}>Deal</button>
-                <div className="CardDeck-container">
+            <div className="CardDeck">
+                <h1 className="CardDeck-title">Card Dealer</h1>
+                <h2 className="CardDeck-title subtitle">Demo made with React</h2>
+                <button className="CardDeck-btn" onClick={this.getCard}>Deal</button>
+                <div className="CardDeck-cardContainer">
                     {this.renderCards()}
                 </div>
             </div>
